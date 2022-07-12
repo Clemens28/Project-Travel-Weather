@@ -5,9 +5,9 @@ from meteostat import Stations, Monthly, Point
 import pandas as pd
 
 # Set time period
-start = datetime(2021, 1, 1)
+start = datetime(1991, 1, 1)
 end = datetime(2021, 12, 31)
-location=Point(50.866,7.143),
+location=Point(50.866,7.143)
 
 # Get Monthly data
 data = Monthly(location, start, end)
@@ -21,8 +21,20 @@ plt.show()
 
 df1=pd.DataFrame(data)
 
-df1_transposed=df1.T
+print(df1)
 
-print(df1_transposed)
+#df1_transposed=df1.T
 
-df1_transposed.to_csv('Cologne_Location.csv')
+#print(df1_transposed)
+
+#df1_transposed.to_csv('Cologne_Location.csv')
+
+# Build the avg. values per month of the last 30 years
+## cut the year and the day from the timestamp
+### convert times into string
+
+df1['time'] = df1.index
+
+df1['time']=df1['time'].dt.strftime('%Y-%m-%d')
+
+print(df1.dtypes)
