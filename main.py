@@ -30,11 +30,14 @@ print(df1)
 #df1_transposed.to_csv('Cologne_Location.csv')
 
 # Build the avg. values per month of the last 30 years
-## cut the year and the day from the timestamp
-### convert times into string
+
+### convert timestamp into string
 
 df1['time'] = df1.index
 
 df1['time']=df1['time'].dt.strftime('%Y-%m-%d')
 
 print(df1.dtypes)
+
+## cut the year and the day from the timestamp
+
