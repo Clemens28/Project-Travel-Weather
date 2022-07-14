@@ -7,7 +7,11 @@ import pandas as pd
 # Set time period
 start = datetime(1991, 1, 1)
 end = datetime(2021, 12, 31)
-location=Point(50.866,7.143)
+location_lat=14.640
+location_lon=-90.513
+location=Point(location_lat,location_lon)
+
+
 
 # Get Monthly data
 data = Monthly(location, start, end)
@@ -161,7 +165,9 @@ avg_tsun_11=df3.loc[df3['month'] == '11', 'tsun'].mean()
 avg_tsun_12=df3.loc[df3['month'] == '12', 'tsun'].mean()
 
 
-d={'month':[1,2,3,4,5,6,7,8,9,10,11,12], 
+d={'lat':[location_lat, location_lat, location_lat, location_lat, location_lat, location_lat, location_lat, location_lat, location_lat, location_lat, location_lat, location_lat], 
+'lon':[location_lon, location_lon, location_lon, location_lon, location_lon, location_lon, location_lon, location_lon, location_lon, location_lon, location_lon, location_lon], 
+'month':['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'], 
 'tavg':[avg_tavg_01, avg_tavg_02, avg_tavg_03, avg_tavg_04, avg_tavg_05, avg_tavg_06, avg_tavg_07, avg_tavg_08, avg_tavg_09, avg_tavg_10, avg_tavg_11, avg_tavg_12],
 'tmin':[avg_tmin_01, avg_tmin_02, avg_tmin_03, avg_tmin_04, avg_tmin_05, avg_tmin_06, avg_tmin_07, avg_tmin_08, avg_tmin_09, avg_tmin_10, avg_tmin_11, avg_tmin_12],
 'tmax':[avg_tmax_01, avg_tmax_02, avg_tmax_03, avg_tmax_04, avg_tmax_05, avg_tmax_06, avg_tmax_07, avg_tmax_08, avg_tmax_09, avg_tmax_10, avg_tmax_11, avg_tmax_12],
@@ -174,3 +180,12 @@ d={'month':[1,2,3,4,5,6,7,8,9,10,11,12],
 df4=pd.DataFrame(data=d)
 
 print(df4)
+
+## This creates a csv to write all the data in. Only run once to initially create the csv file
+
+#df4.to_csv("List_of_Weather_Data.csv")
+
+##This writes the weather data of the input coordinates into the csv every time the script runs
+
+df4.to_csv('List_of_Weather_Data.csv', mode='a', index=True, header=False)
+
