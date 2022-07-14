@@ -7,8 +7,8 @@ import pandas as pd
 # Set time period
 start = datetime(1991, 1, 1)
 end = datetime(2021, 12, 31)
-location_lat=14.640
-location_lon=-90.513
+location_lat=9.512
+location_lon=100.013
 location=Point(location_lat,location_lon)
 
 
