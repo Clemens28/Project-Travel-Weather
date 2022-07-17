@@ -14,8 +14,8 @@ option = st.selectbox(
 
 st.write('You selected:', option)
 tooltip = {
-    "html": "</b> {option} </b> Durchschnittliche Temparatur in Grad Celsius",
-    "style": {"background": "grey", "color": "white", "font-family": '"Helvetica Neue", Arial', "z-index": "10000"},}
+    'html': '</b> {option} </b> Durchschnittliche Temparatur in Grad Celsius',
+    'style': {'background': 'grey', 'color': 'white', 'font-family': 'Helvetica Neue', 'z-index': '10000'}}
 st.pydeck_chart(pdk.Deck(
      map_style='mapbox://styles/mapbox/light-v9',
      initial_view_state=pdk.ViewState(
@@ -29,7 +29,7 @@ st.pydeck_chart(pdk.Deck(
          pdk.Layer(
             'HexagonLayer',
             data=df20,
-            get_position='[lon, lat]',
+            get_position=[df20.columns[1], df20.columns[0]],
             radius=10000,
             elevation_scale=4,
             elevation_range=[0, 1000],
@@ -44,9 +44,9 @@ st.pydeck_chart(pdk.Deck(
             # get_radius=200,
          #),
          pdk.Layer(
-             "ColumnLayer",
+             'ColumnLayer',
              data=df20,
-             get_position=["lon", "lat"],
+             get_position=[df20.columns[1], df20.columns[0]],
              get_elevation= option,
              elevation_scale=500,
              radius=10000,
