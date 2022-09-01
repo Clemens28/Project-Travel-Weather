@@ -1,0 +1,19 @@
+from datetime import datetime
+import matplotlib.pyplot as plt
+from meteostat import Stations, Monthly, Point
+import pandas as pd
+
+
+# Location und Zeitperiode für meteostat Abfrage definieren
+start = datetime(1991, 1, 1)
+end = datetime(2021, 12, 31)
+location_lat=50.666
+location_lon=7.234
+location=Point(location_lat,location_lon)
+
+# Get Monthly data
+data_1 = Monthly(location, start, end)
+data_1 = data_1.fetch()
+
+
+print(data_1)
