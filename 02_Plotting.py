@@ -58,5 +58,3 @@ st.pydeck_chart(pdk.Deck(
 )
      ],
     ))
-
-print (Thomas)
