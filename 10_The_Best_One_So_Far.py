@@ -3,11 +3,13 @@ import streamlit as st
 import numpy as np
 import pydeck as pdk
 
-df = pd.read_csv('List_of_Weather_Data_Cleaned_TAVG_withLocation_v01.csv', sep=';')
+df = pd.read_csv('List_of_Weather_Data_Cleaned_ALL_withLocation_v01.csv', sep=';')
 #print (df21)
 
 print(df.dtypes)
 
+pd.to_numeric(df['PRCP'])
+pd.to_numeric(df['TSUN'])
 
 
 # Data import & columns
@@ -24,12 +26,17 @@ month_choice = st.sidebar.multiselect(
     'Choose Month:', Month, default=Month)
 tavg_choice = st.sidebar.slider(
     'Choose Minumum Average Temperature:', min_value=0.0, max_value=50.0, step=0.1)
+prcp_choice = st.sidebar.slider(
+    'Choose Maximum Average Precipitation:', min_value=0.0, max_value=500.0, step=0.1)
+#tsun_choice = st.sidebar.slider(
+    #'Choose Minumum Average Hours of Sun:', min_value=0.0, max_value=11000.0, step=0.1)
 
 df = df[df['MONTH'].isin(month_choice)]
 df = df[df['AVG_TEMP'] > tavg_choice]
-
+df = df[df['PRCP'] < prcp_choice]
+#df = df[df['TSUN'] > tsun_choice]
 # Main
-st.title(f"Where to travle next?")
+st.title(f"Where to travel next?")
 
 # Main - dataframes
 st.markdown('Averange Temperatures')
