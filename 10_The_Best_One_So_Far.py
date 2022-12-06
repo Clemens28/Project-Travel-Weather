@@ -39,19 +39,27 @@ df = df[df['PRCP'] < prcp_choice]
 st.title(f"Where to travel next?")
 
 # Main - dataframes
-st.markdown('Averange Temperatures')
+st.markdown('Average Temperatures')
 
-st.dataframe(df.sort_values('AVG_TEMP',
-             ascending=False).reset_index(drop=True))
+st.dataframe(data=df.sort_values('AVG_TEMP',
+             ascending=False).reset_index(drop=True), width=10000)
 
 
 # Main - charts
+
+st.markdown('Chart')
+
+#df.set_index(df['CITY'])
+df['CITY'] = df.index
+st.bar_chart(data=df['AVG_TEMP'])
+
 st.markdown('World Map')
 
 
 tooltip = {
     'html': 'Durchschnittliche Temparatur in Grad Celsius:</b></b>',
     'style': {'background': 'grey', 'color': 'white', 'font-family': 'Helvetica Neue', 'z-index': '10000'}}
+
 
 st.map(df)
 
