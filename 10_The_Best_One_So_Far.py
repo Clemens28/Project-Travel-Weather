@@ -82,5 +82,8 @@ tooltip = {
 st.map(df)
 
 
+options2 = st.multiselect(label=
+    'What are your favorite destinations?', options=df['CITY'])
 
+st.write('You selected:', options2)
 
